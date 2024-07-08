@@ -7,8 +7,7 @@ body {
     align-items: flex-start;
     height: 100vh;
     margin: 0;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 20px; /* Add some padding at the top */
 }
 
 .container {
@@ -28,8 +27,8 @@ body {
 
 .review-form, .reviews-list {
     margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 textarea, input {
@@ -58,4 +57,16 @@ button:hover {
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
+    position: relative;
+}
+
+button.delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #E63946;
+}
+
+button.delete:hover {
+    background-color: #FF6F61;
 }
