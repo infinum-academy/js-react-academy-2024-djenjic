@@ -1,8 +1,7 @@
 // pages/index.tsx
 'use client'
 import { Box, Heading } from "@chakra-ui/react";
-import ShowDetails from "../components/features/shows/ShowDetails";
-import ShowReviewSection from "../components/features/shows/ShowReviewSection";
+import {ShowContainer} from "../components/features/shows/ShowContainer";
 import { IShow, IReview } from "../typings/show";
 import styles from './page.module.css';
 
@@ -10,7 +9,7 @@ const defaultShow: IShow = {
     title: "Brooklyn Nine-Nine",
     description: "Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
     averageRating: 0,
-    imageUrl: "https://www.crimemuseum.org/wp-content/uploads/2014/05/Brooklyn-Nine-Nine.jpg"
+    imageUrl: "/images/Brooklyn-Nine-Nine.jpg"
 };
 
 let show: IShow = { ...defaultShow }; // Declare show here with default values
@@ -33,10 +32,10 @@ if (storedReviews) {
 export default function Home() {
     return (
         <main className={styles.main}>
-            <Box textAlign="center" py={10}>
-                <Heading>TV Shows APP</Heading>
+            <Box textAlign="center" py={5} mx={300}>
                 <ShowDetails show={show} />
                 <ShowReviewSection />
+                <ShowContainer />
             </Box>
         </main>
     );
