@@ -55,6 +55,7 @@
 
         if(reviewRating > 5 || reviewRating < 1 || isNaN(reviewRating)){
             alert('Ocjena mora biti izmedu 1 i 5');
+            return;
         }
         
         if (reviewText && reviewRating) {
