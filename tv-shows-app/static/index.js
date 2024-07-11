@@ -52,6 +52,10 @@
     document.getElementById('submit-review').addEventListener('click', () => {
         const reviewText = document.getElementById('review-text').value;
         const reviewRating = document.getElementById('review-rating').value;
+
+        if(reviewRating > 5 || reviewRating < 1 || isNaN(reviewRating)){
+            alert('Ocjena mora biti izmedu 1 i 5');
+        }
         
         if (reviewText && reviewRating) {
             reviews.push({
