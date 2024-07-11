@@ -1,26 +1,19 @@
 // src/components/features/review/ReviewList.tsx
 import { Box } from "@chakra-ui/react";
-import ReviewItem from "./ReviewItem";
+import {ReviewItem} from "./ReviewItem";
+import { IReview } from "@/typings/show";
 
-interface Review {
-  email: string;
-  avatarUrl?: string;
-  rating: number;
-  comment: string;
+interface IReviewListProps {
+  reviewsList: IReview[];
+  onDeleteReview: (review: IReview) => void;
 }
 
-interface ReviewListProps {
-  reviews: Review[];
-}
-
-const ReviewList = ({ reviews }: ReviewListProps) => {
+export const ReviewList = ({ reviewsList, onDeleteReview }: IReviewListProps) => {
   return (
     <Box>
-      {reviews.map((review, index) => (
-        <ReviewItem key={index} review={review} />
+      {reviewsList.map((review, index) => (
+        <ReviewItem key={index} review={review} onDeleteReview={onDeleteReview}/>
       ))}
     </Box>
   );
 };
-
-export default ReviewList;

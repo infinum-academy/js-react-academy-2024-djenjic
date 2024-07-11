@@ -1,43 +1,32 @@
 // src/components/features/shows/ShowReviewSection.tsx
 import { useState, useEffect } from "react";
-import { Box } from "@chakra-ui/react";
-import ReviewList from "../review/ReviewList";
-import ReviewForm from "../review/ReviewForm";
+import { Flex, Spinner } from "@chakra-ui/react";
+import {ReviewList} from "../review/ReviewList";
+import {ReviewForm} from "../review/ReviewForm";
+import { IReview } from "@/typings/show";
 
-interface Review {
-  email: string;
-  avatarUrl?: string;
-  rating: number;
-  comment: string;
+interface IShowReviewSectionProps {
+  reviewsList: IReview[];
+  addShowReview: (review: IReview) => void;
+  onDeleteReview: (review: IReview) => void;
 }
 
-const ShowReviewSection = () => {
-  // State to hold reviews
-  const [reviews, setReviews] = useState<Review[]>([]);
-
-  // Effect to load reviews from local storage on component mount
-  useEffect(() => {
-    const storedReviews = localStorage.getItem("reviews");
-    if (storedReviews) {
-      setReviews(JSON.parse(storedReviews));
-    }
-  }, []);
-
-  // Function to add a new review
-  const addShowReview = (review: Review) => {
-    const newReviews = [...reviews, review];
-    setReviews(newReviews);
-    // Save updated reviews to local storage
-    localStorage.setItem("reviews", JSON.stringify(newReviews));
-  };
-
+export const ShowReviewSection = ({ reviewsList,
+  addShowReview,
+  onDeleteReview,
+}: IShowReviewSectionProps) => {
   return (
-    <Box>
+    <Flex marginBottom={3} gap={3} direction="column">
       <ReviewForm addShowReview={addShowReview} />
-      <ReviewList reviews={reviews} />
-    </Box>
+      {reviewsList?.length <= 0 && <Spinner marginBottom={5} />}
+      {reviewsList?.length > 0 && (
+        <ReviewList 
+        reviewsList={reviewsList} 
+        onDeleteReview={onDeleteReview}
+      />
+      )}
+    </Flex>
   );
 };
 
-export default ShowReviewSection;
 
