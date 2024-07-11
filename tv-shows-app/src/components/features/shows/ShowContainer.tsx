@@ -1,8 +1,8 @@
 'use client';
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import  ShowDetails  from './ShowDetails';
 import  ShowReviewSection  from './ShowReviewSection';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Container } from '@chakra-ui/react';
 import {IReview} from '../../../typings/show';
 import {IShow} from '../../../typings/show';
 
@@ -48,9 +48,9 @@ let ReviewList: Array<IReview> = [];
     };
   
     return (
-      <Fragment>
+      <Container>
        <ShowDetails show={defaultShow} />
        <ShowReviewSection />
-      </Fragment>
+      </Container>
     );
   };

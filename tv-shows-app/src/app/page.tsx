@@ -33,8 +33,6 @@ export default function Home() {
     return (
         <main className={styles.main}>
             <Box textAlign="center" py={5} mx={300}>
-                <ShowDetails show={show} />
-                <ShowReviewSection />
                 <ShowContainer />
             </Box>
         </main>
