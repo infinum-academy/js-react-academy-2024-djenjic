@@ -1,16 +1,26 @@
+    const saveToLocalStorage = (reviews) => {
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+    }
+
+    const createReviewElement = (review, index) => {
+        const reviewItem = document.createElement('div');
+        reviewItem.className = 'review-item';
+        reviewItem.innerHTML = `
+                <p>${review.text}</p>
+                <p>Rating: ${review.rating} / 5</p>
+                <button class="delete" data-index="${index}">Remove</button>
+            `;
+    return reviewItem;
+    }
+    
+    
     const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
 
     const renderReviews = () => {
         const reviewsContainer = document.getElementById('reviews');
         reviewsContainer.innerHTML = '';
         reviews.forEach((review, index) => {
-            const reviewItem = document.createElement('div');
-            reviewItem.className = 'review-item';
-            reviewItem.innerHTML = `
-                <p>${review.text}</p>
-                <p>Rating: ${review.rating} / 5</p>
-                <button class="delete" data-index="${index}">Remove</button>
-            `;
+            const reviewItem = createReviewElement(review, index);
             reviewsContainer.appendChild(reviewItem);
         });
         updateAverageRating();
@@ -23,7 +33,7 @@
             button.addEventListener('click', (event) => {
                 const index = event.target.getAttribute('data-index');
                 reviews.splice(index, 1);
-                localStorage.setItem('reviews', JSON.stringify(reviews));
+                saveToLocalStorage(reviews);
                 renderReviews();
             });
         });
@@ -48,7 +58,7 @@
                 text: reviewText,
                 rating: reviewRating
             });
-            localStorage.setItem('reviews', JSON.stringify(reviews));
+            saveToLocalStorage(reviews);
             renderReviews();
             document.getElementById('review-text').value = '';
             document.getElementById('review-rating').value = '';
