@@ -8,7 +8,7 @@ import styles from './page.module.css';
 export default function Home() {
     return (
         <main className={styles.main}>
-            <Box textAlign="center" py={5} mx={300}>
+            <Box textAlign="center" py={5} >
                 <ShowContainer />
             </Box>
         </main>
