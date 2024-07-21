@@ -2,6 +2,8 @@
 export interface IReview {
     text: string;
     rating: number;
+    email?: string;
+    avatar?: string;
 }
   
 export interface IShow {
@@ -10,5 +12,6 @@ export interface IShow {
     averageRating?: number;
     imageUrl?: string;
     reviews?: IReview[];
+    id?:String;
 }
   

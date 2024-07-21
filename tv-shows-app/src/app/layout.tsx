@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Providers } from './providers'
 import {Header} from '../components/shared/header'
+import { SidebarNavigation } from '@/components/shared/SidebarNavigation';
+import { Box, Flex } from "@chakra-ui/react";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +21,15 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Providers>
-          <Header />
-          {children}
+      <Providers>
+          <Flex background="#1b004c">
+            <Box as="nav">
+              <SidebarNavigation />
+            </Box>
+            <Box flex="1" >
+              {children}
+            </Box>
+          </Flex>
         </Providers>
       </body>
     </html>
