@@ -5,17 +5,19 @@ import  {ShowReviewSection}  from './ShowReviewSection';
 import { Spinner, Container } from '@chakra-ui/react';
 import {IReview} from '../../../typings/show';
 import {IShow} from '../../../typings/show';
+import { useParams } from 'next/navigation';
+import {getShow} from '@/fetchers/show'
+import useSWR from 'swr';
 
-const defaultShow: IShow = {
-    title: "Brooklyn Nine-Nine",
-    description: "Comedy series following the exploits of Det. Jake Peralta and his diverse, lovable colleagues as they police the NYPD's 99th Precinct.",
-    averageRating: 0,
-    imageUrl: "/images/Brooklyn-Nine-Nine.jpg"
-};
+interface IShowContainerProps {
+  show: IShow;
+}
 
 let ReviewList: Array<IReview> = [];
 
-  export const ShowContainer = () => {
+  export const ShowContainer = ({show}: IShowContainerProps) => {
+    const defaultShow = show;
+
     const [reviewList, setReviewList] = useState(ReviewList);
   
     useEffect(() => {
@@ -31,7 +33,7 @@ let ReviewList: Array<IReview> = [];
     const updateAverageRating = (ReviewList: Array<IReview>) => {
       const total = ReviewList.reduce((sum, review) => sum + Number(review.rating), 0);
       const average = (total / ReviewList.length).toFixed(1);
-      defaultShow.averageRating = Math.round((total / ReviewList.length) * 10) / 10;
+      defaultShow.average_rating = Math.round((total / ReviewList.length) * 10) / 10;
     }
   
     const loadFromLocalStorage = () => {
@@ -57,7 +59,7 @@ let ReviewList: Array<IReview> = [];
     };
   
     return (
-      <Container>
+      <Container color='white'>
        <ShowDetails show={defaultShow} />
        <ShowReviewSection 
           addShowReview={addShowReview}

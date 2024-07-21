@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { ShowCard } from './ShowCard';
+import { ShowCard } from '../../shared/show/ShowCard';
 import { IShow } from '@/typings/show';
 import { SimpleGrid} from '@chakra-ui/react';
 
